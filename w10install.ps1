@@ -13,12 +13,26 @@
 
 # Function - Install Chocolatey Package Manager
 function InstallChoco {
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 
 }
 
 # Function - Install Default Software via Chocolatey
 function InstallChocoDefaults {
-    
+choco install vlc -y
+choco install firefox -y
+choco install brave -y
+choco install 7zip -y
+choco install adobereader -y
+choco install rufus -y
+choco install onlyoffice -f
+choco install keepassxc -y
+choco install gimp -y
+choco install steam -y
+choco install inkscape -y
+choco install adwcleaner -y
+choco install signal -y
+choco install youtube-dl-gui -y
 }
 
 # Remove Edge Browser 
@@ -37,3 +51,8 @@ function RemoveEdge {
         Write-Host "`n"
     }
 }
+
+# Disable Windows Updates
+sc.exe config wuauserv start= disabled
+sc.exe stop wuauserv
+sc.exe start wuauserv
